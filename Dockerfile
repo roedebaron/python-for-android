@@ -110,3 +110,11 @@ RUN mkdir pythonforandroid \
     && rm -rf ~/.cache/
 
 COPY --chown=user:user . ${WORK_DIR}
+
+#####################################################
+
+RUN apt-get install -y dos2unix
+
+RUN . /home/user/app/venv/bin/activate
+
+RUN p4a apk --dist_name=my_dist --private myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy,opencv --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
