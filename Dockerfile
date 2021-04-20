@@ -109,15 +109,20 @@ RUN mkdir pythonforandroid \
     && make virtualenv \
     && rm -rf ~/.cache/
 
+COPY --chown=user:user . ${WORK_DIR}
 
-#####################################################
+###################################################
 
-RUN apt-get install -y dos2unix
+RUN sudo apt-get update
 
-RUN . /home/user/app/venv/bin/activate
+RUN sudo apt-get install -y dos2unix
 
-RUN p4a apk --dist_name=my_dist --private myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy,opencv --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
+# Python
+RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3 --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
+# Kivy
+RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
+## OpenCV
+RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy,opencv --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
 
 #############################################################################################################
 
-COPY --chown=user:user . ${WORK_DIR}
