@@ -123,6 +123,10 @@ RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private 
 RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
 ## OpenCV
 RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy,opencv --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
+## Android
+RUN . /home/user/app/venv/bin/activate && p4a apk --dist_name=my_dist --private /home/user/app/myapp --package=org.example.myapp --name "my-test-app" --version 0.1 --bootstrap=sdl2 --requirements=python3,kivy,opencv,android --sdk-dir /home/user/.android/android-sdk --ndk-dir /home/user/.android/android-ndk
+
+
 
 #############################################################################################################
 
